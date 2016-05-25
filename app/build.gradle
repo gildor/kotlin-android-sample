@@ -11,6 +11,10 @@ android {
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
+
+        defaultConfig {
+            vectorDrawables.useSupportLibrary = true
+        }
     }
     buildTypes {
         release {
@@ -18,18 +22,23 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    sourceSets {
-        main.java.srcDirs += 'src/main/kotlin'
+
+    dataBinding {
+        enabled = true
     }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
+    kapt 'com.android.databinding:compiler:2.1.0'
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'com.android.support:design:23.4.0'
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    testCompile 'junit:junit:4.12'
 }
 repositories {
     mavenCentral()
+}
+
+kapt {
+    generateStubs = true
 }
