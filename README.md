@@ -1,4 +1,9 @@
-# Kotlin Android Sample
+#Reproduction of Android Lint bug with unused resources in Kotlin code
 
-This is just sample Android application that use Kotlin
-I use it for test new features and reproduce possible bugs
+If you check project using Android Lint:
+
+```
+$ ./gradlew :app:lintDebug
+```
+
+You will see 12 unused resources warnings, but all of this resources is actually used on `MainActivity.kt`
