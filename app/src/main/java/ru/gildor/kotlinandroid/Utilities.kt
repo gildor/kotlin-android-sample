@@ -14,6 +14,6 @@ fun <T : View> findView(@IdRes id: Int) = object: ReadOnlyProperty<Activity, T> 
         if (view == null) {
             view = thisRef.findViewById(id) as T;
         }
-        return view!!
+        return view ?: throw IllegalArgumentException("View with id $id not found in $thisRef")
     }
 }
