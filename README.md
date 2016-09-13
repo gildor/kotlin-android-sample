@@ -1,8 +1,8 @@
 # Android app with Kotlin + kapt2 and Data Bindings build error
 
-This is simple app that use Kotlin 1.0.4-eap-100 with kapt2 and DataBindings
+This is simple app that use Kotlin 1.0.4-eap-114 with kapt2 and DataBindings
 
-To reproduce just try to build:
+To reproduce build error just try to build:
 
 ```
 ./gradlew assembleDebug
@@ -11,11 +11,7 @@ To reproduce just try to build:
 Build fails with exception:
 
 ```
-cannot generate view binders java.lang.StringIndexOutOfBoundsException: String index out of range: -1
-        at java.lang.String.substring(String.java:1967)
-        at android.databinding.tool.reflection.annotation.AnnotationTypeUtil.getDescription(AnnotationTypeUtil.java:87)
-        at android.databinding.tool.reflection.annotation.AnnotationTypeUtil.getDescription(AnnotationTypeUtil.java:47)
-        ...
+data binding error ****msg:Cannot find the getter for attribute 'android:text' with value type T on android.widget.EditText
 ```
 
-[Full log](kapt-build-fail.log)
+Please check Kotlin issue for updates - https://youtrack.jetbrains.com/issue/KT-13823
