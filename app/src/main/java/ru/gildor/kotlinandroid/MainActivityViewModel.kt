@@ -1,6 +1,7 @@
 package ru.gildor.kotlinandroid
 
 import android.animation.ObjectAnimator
+import android.databinding.ObservableField
 import android.support.annotation.DrawableRes
 import android.support.design.widget.Snackbar
 import android.view.View
@@ -8,6 +9,9 @@ import android.view.animation.AnticipateOvershootInterpolator
 import android.widget.Toast
 
 class MainActivityViewModel(@DrawableRes val icon: Int) {
+
+    val text = ObservableField<String>("Hello world")
+
     fun rotate(view: View) {
         ObjectAnimator.ofFloat(view, "rotation", 0f, 180f, 0f, 360f)
                 .setDuration(5000)

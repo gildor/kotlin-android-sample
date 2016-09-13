@@ -13,7 +13,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
 
-        binding.text = "Hello syntax highlighting bug"
         binding.model = MainActivityViewModel(
                 R.drawable.ic_android_green
         )
