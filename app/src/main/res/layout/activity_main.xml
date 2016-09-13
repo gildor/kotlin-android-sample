@@ -7,9 +7,6 @@
             name="model"
             type="ru.gildor.kotlinandroid.MainActivityViewModel" />
 
-        <variable
-            name="text"
-            type="String" />
     </data>
 
     <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -43,10 +40,10 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             tools:showIn="@layout/activity_main">
 
-            <TextView
+            <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{text}" />
+                android:text="@={model.text}" />
 
             <ImageView
                 android:layout_width="wrap_content"
