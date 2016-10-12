@@ -1,10 +1,10 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
+//apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 24
-    buildToolsVersion "24.0.2"
+    buildToolsVersion "24.0.3"
 
     defaultConfig {
         applicationId "ru.gildor.kotlinandroid"
@@ -29,10 +29,24 @@ android {
     }
 }
 
+kapt.generateStubs = true
+
 dependencies {
-    kapt 'com.android.databinding:compiler:2.2.0-rc1'
-    compile 'com.android.support:appcompat-v7:24.2.0'
-    compile 'com.android.support:design:24.2.0'
+    kapt 'com.android.databinding:compiler:2.2.1'
+    compile 'com.android.support:appcompat-v7:24.2.1'
+    compile 'com.android.support:design:24.2.1'
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    compile "org.jetbrains.kotlin:kotlin-runtime:$kotlin_version"
+
     testCompile 'junit:junit:4.12'
+
+    testCompile("de.jodamob.kotlin:kotlin-runner-junit4:0.3.1", {
+        exclude group: "org.jetbrains.kotlin", module: "kotlin-stdlib"
+        exclude group: "org.jetbrains.kotlin", module: "kotlin-runtime"
+    })
+    testCompile "org.mockito:mockito-core:2.2.0"
+    testCompile("com.nhaarman:mockito-kotlin:0.7.0", {
+        exclude group: "org.jetbrains.kotlin", module: "kotlin-stdlib"
+        exclude group: "org.jetbrains.kotlin", module: "kotlin-runtime"
+    })
 }
