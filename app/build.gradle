@@ -34,6 +34,7 @@ dependencies {
     kapt 'com.ryanharter.auto.value:auto-value-parcel:0.2.3-rc2'
     kapt 'com.ryanharter.auto.value:auto-value-gson:0.3.2-rc1'
     kaptTest "com.google.dagger:dagger-compiler:2.6.1"
+    kaptAndroidTest "com.google.dagger:dagger-compiler:2.6.1"
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.android.support:appcompat-v7:24.2.0'
     compile 'com.android.support:design:24.2.0'
