@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         val testFile = File(applicationContext.cacheDir, "test.txt")
         testFile.writeText("this is test\nfile")
         //If you comment the next line build will be successfull 
-        dep = DaggerTestComponent.builder().testModule(TestModule(testFile.toURI().toURL())).build().dep()
+        dep = DaggerAppComponent.builder().build().dependency()
         AsyncTask.execute {
             Log.d("DaggerDependency", connection.inputStream.reader().readText())
         }

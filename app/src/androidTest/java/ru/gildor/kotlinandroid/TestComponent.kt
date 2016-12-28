@@ -8,9 +8,7 @@ import java.net.URL
 import java.net.URLConnection
 
 @Component(modules = arrayOf(TestModule::class))
-interface TestComponent : AppComponent {
-    fun dep(): MyDependency
-}
+interface TestComponent : AppComponent
 
 @Module
 class TestModule(private val path: URL) {
