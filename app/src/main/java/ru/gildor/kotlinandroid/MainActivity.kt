@@ -13,7 +13,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.animation.DecelerateInterpolator
 import android.widget.Toast
-import butterknife.Bind
+import butterknife.BindView
 import butterknife.ButterKnife
 import java.io.File
 import java.net.URLConnection
@@ -22,8 +22,9 @@ import javax.inject.Inject
 class MainActivity : AppCompatActivity() {
 
     val fab: FloatingActionButton by findView(R.id.fab)
-    val toolbar: Toolbar by findView(R.id.toolbar)
-    @Bind(R.id.android)
+    @BindView(R.id.toolbar)
+    internal lateinit var toolbar: Toolbar
+    @BindView(R.id.android)
     internal lateinit var androidLogo: View
 
     @Inject

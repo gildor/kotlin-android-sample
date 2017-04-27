@@ -1,14 +1,20 @@
 package ru.gildor.kotlinandroid
 
+import org.junit.Assert.assertEquals
+import org.junit.Test
 import java.io.File
 
 /**
  * [Testing Fundamentals](http://d.android.com/tools/testing/testing_android.html)
  */
 class DaggerTest {
-    fun daggerTest() {
-        DaggerTestComponent.builder()
-                .testModule(TestModule(File(".").toURI().toURL()))
-                .build()
+
+    private val testComponent = DaggerTestComponent.builder()
+            .testModule(TestModule(File("/tmp/file").toURI().toURL()))
+            .build()
+
+    @Test
+    fun testUrl() {
+        assertEquals("file:/tmp/file", testComponent.connection().url.toString())
     }
 }
