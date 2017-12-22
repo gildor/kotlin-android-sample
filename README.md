@@ -1,27 +1,9 @@
-# Sample Kotlin Android app that demonstrate kapt3 task runs every time
+# Sample Kotlin Android app that demonstrates kapt 1.2.20-eap-11 build error
 
-To reproduce just run clean build:
-```
-./gradlew clean assembleDebug
-```
-Then change code of [NotUsedClass#notUsedMethod()](app/src/main/java/ru/gildor/kotlinandroid/NotUsedClass.kt)
+This particular version with Kotlin 1.2.10 works fine. Please check the latest commit in branch KT-21936
 
-And run incremental build:
+Builds without problem:
+
 ```
 ./gradlew assembleDebug
 ```
-
-You will see task `:app:kaptDebugKotlin` actually runs.
-Also, you can try to change code again and exclude kapt task:
- 
-```
-./gradlew assembleDebug -x :app:kaptDebugKotlin
-```
-
-In this case build will be faster.
-
-Current behaviour:
-Kapt task executes each time when sources changes, even if changed file has no annotation processing and even not used
-
-Expected behaviour:
-Task kaptDebugKotlin should be marked as UP-TO-DATE and skip AP step when AP not needed.
