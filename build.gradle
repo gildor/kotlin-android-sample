@@ -1,7 +1,6 @@
 buildscript {
-    ext.kotlin_version = '1.2.20-eap-11' // If you change to 1.2.10 everything works as expected
+    ext.kotlin_version = '1.2.21'
     repositories {
-        maven { url "https://dl.bintray.com/kotlin/kotlin-eap" }
 	    google()
         jcenter()
     }

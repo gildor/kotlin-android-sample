@@ -1,30 +1,15 @@
 package ru.gildor.kotlinandroid
 
 import android.content.Intent
-import android.os.Parcelable
 
 import com.google.auto.value.AutoValue
 
 @AutoValue
-abstract class Data : Parcelable {
-
-    abstract fun title(): String
-
-    abstract fun number(): Int
-
-    abstract fun intent(): Intent
-
-    abstract fun toBuilder(): Builder
+abstract class Data : IData {
 
     @AutoValue.Builder
-    abstract class Builder {
-        abstract fun title(title: String): Builder
-
-        abstract fun number(number: Int): Builder
-
-        abstract fun intent(`object`: Intent): Builder
-
-        abstract fun build(): Data
+    abstract class Builder : IData.IBuilder<Builder> {
+        abstract override fun build(): Data
     }
 
     companion object {
