@@ -3,6 +3,10 @@ package ru.gildor.kotlinandroid
 import android.content.Intent
 
 import com.google.auto.value.AutoValue
+/**
+ * KT-22493 This line causes kapt crash
+ */
+import ru.gildor.kotlinandroid.`$AutoValue_Data`.Builder as DataBuilder
 
 @AutoValue
 abstract class Data : IData {
@@ -18,7 +22,7 @@ abstract class Data : IData {
         }
 
         fun builder(): Data.Builder {
-            return `$AutoValue_Data`.Builder().intent(Intent()).number(42).title("my title")
+            return DataBuilder().intent(Intent()).number(42).title("my title")
         }
     }
 }
