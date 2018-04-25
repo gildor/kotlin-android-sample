@@ -5,4 +5,5 @@
     <string name="action">Action</string>
     <string name="toast">This is toast!</string>
     <string name="android">Android!</string>
+    <string name="toolbar_title">Kotlin Android Sample</string>
 </resources>

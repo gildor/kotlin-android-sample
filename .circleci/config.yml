@@ -1,0 +1,13 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/android:api-27-alpha
+    environment:
+      JVM_OPTS: -Xmx3200m
+    steps:
+      - checkout
+      - run:
+          name: Run Tests
+          command: ./gradlew lint test
+
