@@ -1,20 +1,14 @@
 package ru.gildor.kotlinandroid
 
-import android.animation.ObjectAnimator
+import android.databinding.DataBindingUtil
 import android.os.AsyncTask
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
-import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.Toolbar
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-import android.view.animation.DecelerateInterpolator
-import android.widget.Toast
-import butterknife.BindView
-import butterknife.ButterKnife
+import ru.gildor.kotlinandroid.databinding.ActivityMainBinding
 import java.io.File
 import java.net.URLConnection
 import javax.inject.Inject
@@ -22,10 +16,6 @@ import javax.inject.Inject
 class MainActivity : AppCompatActivity() {
 
     val fab: FloatingActionButton by findView(R.id.fab)
-    @BindView(R.id.toolbar)
-    internal lateinit var toolbar: Toolbar
-    @BindView(R.id.android)
-    internal lateinit var androidLogo: View
 
     @Inject
     lateinit var connection: URLConnection
@@ -33,33 +23,31 @@ class MainActivity : AppCompatActivity() {
     lateinit var dep: MyDependency
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        DaggerAppComponent.builder().build().inject(this)
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        ButterKnife.bind(this)
-        val testFile = File(applicationContext.cacheDir, "test.txt")
-        testFile.writeText("this is test\nfile")
+
+        val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+        binding.model = MainViewModel(this)
+
+        initTestData()
         //If you comment the next line build will be successfull 
-        dep = DaggerAppComponent.builder().build().dependency()
+        testDependencies()
+        setSupportActionBar(binding.toolbar)
+
+        fab.setOnClickListener { view ->
+        }
+    }
+
+    private fun testDependencies() {
         AsyncTask.execute {
             Log.d("DaggerDependency", connection.inputStream.reader().readText())
         }
         dep.doSomething()
-        setSupportActionBar(toolbar)
+    }
 
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, getString(R.string.please_replace), Snackbar.LENGTH_LONG)
-                    .setAction(getString(R.string.action)) {
-                        Toast.makeText(this, R.string.toast, Toast.LENGTH_LONG).show()
-                    }
-                    .show()
-        }
-
-        androidLogo.setOnClickListener {
-            ObjectAnimator.ofFloat(it, "rotation", 0f, 180f, 0f).apply {
-                duration = 500
-                interpolator = DecelerateInterpolator()
-            }.start()
-        }
+    private fun initTestData() {
+        val testFile = File(applicationContext.cacheDir, "test.txt")
+        testFile.writeText("this is test\nfile")
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

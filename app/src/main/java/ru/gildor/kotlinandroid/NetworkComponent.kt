@@ -11,6 +11,8 @@ interface AppComponent {
     fun connection(): URLConnection
 
     fun dependency(): MyDependency
+
+    fun inject(activity: MainActivity)
 }
 
 @Module
