@@ -26,6 +26,7 @@
         <ImageView
             android:id="@+id/android"
             android:layout_centerInParent="true"
+            app:placeholder="@{@drawable/ic_android_green}"
             android:onClick="@{model::spinAndroid}"
             app:srcCompat="@drawable/ic_android_green"
             android:layout_width="wrap_content"

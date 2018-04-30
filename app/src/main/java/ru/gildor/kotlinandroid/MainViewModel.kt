@@ -3,6 +3,7 @@ package ru.gildor.kotlinandroid
 import android.animation.ObjectAnimator
 import android.content.Context
 import android.databinding.BindingAdapter
+import android.support.annotation.DrawableRes
 import android.support.design.widget.Snackbar
 import android.view.View
 import android.view.animation.DecelerateInterpolator
@@ -28,14 +29,5 @@ class MainViewModel(private val context: Context) {
     }
 }
 
-
-/**
- * This binding adapter cause StackOverflow exception.
- * To fix this, replace functional type `() -> Unit` with [Runnable]
- * And `function()` with `function.run()`
- */
-@BindingAdapter("onDelayedClick")
-fun onDelayedClick(view: View, function: () -> Unit) {
-    Toast.makeText(view.context, "Clicked!", Toast.LENGTH_SHORT).show()
-    function()
-}
+@BindingAdapter("placeholder")
+fun setPlaceholder(view: View, @DrawableRes placeholder: Int): Unit = TODO()

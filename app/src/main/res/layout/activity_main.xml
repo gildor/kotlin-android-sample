@@ -25,7 +25,6 @@
                 app:title="@{R.string.toolbar_title}"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:onDelayedClick="@{() -> model.showMessage()}"
                 android:background="?attr/colorPrimary"
                 app:popupTheme="@style/AppTheme.PopupOverlay" />
 
