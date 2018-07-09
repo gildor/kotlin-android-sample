@@ -5,7 +5,7 @@
             name="model"
             type="ru.gildor.kotlinandroid.MainViewModel" />
     </data>
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
@@ -14,6 +14,8 @@
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
+        android:orientation="vertical"
+        android:gravity="center"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:context="ru.gildor.kotlinandroid.MainActivity"
         tools:showIn="@layout/activity_main">
@@ -25,12 +27,35 @@
 
         <ImageView
             android:id="@+id/android"
-            android:layout_centerInParent="true"
-            app:placeholder="@{@drawable/ic_android_green}"
             android:onClick="@{model::spinAndroid}"
             app:srcCompat="@drawable/ic_android_green"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/android" />
-    </RelativeLayout>
+
+        <!--
+        Option 1: Use special model for Action (button or any other abstraction)
+        Pros: More idiomatic, IDE helps to construct this model
+        Cons: Requires one more additional view model class
+        -->
+        <include
+            layout="@layout/button_model"
+            app:model="@{model.someAction}" />
+
+        <!--
+        Option 2: Pass properties of root view model to included binding variables
+        Pros: No need for additional view model,
+        Cons: No IDE help, you cannot mark some variables as required
+        -->
+        <include
+            layout="@layout/button"
+            app:listener="@{() -> model.onAction2()}"
+            app:text="@{model.action2}" />
+
+        <!--
+        Conclusion: I would prefer Option 1,
+        but for simple cases like binding with 1 or maximum 2 properties,
+        I don't see any problem to use Option 2
+        -->
+    </LinearLayout>
 </layout>

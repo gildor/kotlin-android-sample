@@ -33,9 +33,6 @@ class MainActivity : AppCompatActivity() {
         //If you comment the next line build will be successfull 
         testDependencies()
         setSupportActionBar(binding.toolbar)
-
-        fab.setOnClickListener { view ->
-        }
     }
 
     private fun testDependencies() {

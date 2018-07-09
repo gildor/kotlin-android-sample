@@ -13,6 +13,7 @@ class MainViewModel(private val context: Context) {
     fun showMessage() {
         Toast.makeText(context, "Clicked!", Toast.LENGTH_SHORT).show()
     }
+
     fun spinAndroid(view: View) {
         ObjectAnimator.ofFloat(view, "rotation", 0f, 180f, 0f).apply {
             duration = 500
@@ -22,12 +23,30 @@ class MainViewModel(private val context: Context) {
 
     fun fab(view: View) {
         Snackbar.make(view, context.getString(R.string.please_replace), Snackbar.LENGTH_LONG)
-                .setAction(context.getString(R.string.action)) {
-                    Toast.makeText(context, R.string.toast, Toast.LENGTH_LONG).show()
-                }
-                .show()
+            .setAction(context.getString(R.string.action)) {
+                Toast.makeText(context, R.string.toast, Toast.LENGTH_LONG).show()
+            }
+            .show()
+    }
+
+    // Option 1 action declaration:
+    // All properties and behavior encapsulated in ActionViewModel
+    val someAction = ActionViewModel("Option 1") {
+        Toast.makeText(
+            context,
+            "Option 1 clicked: Check sources for implementation details!",
+            Toast.LENGTH_SHORT
+        ).show()
+    }
+
+    // Option 2 action declaration:
+    // Property and action part of root view model and we just set them to button binding
+    val action2 = "Option 2"
+    fun onAction2() {
+        Toast.makeText(
+            context,
+            "Option 2 clicked: Check sources for implementation details!",
+            Toast.LENGTH_SHORT
+        ).show()
     }
 }
-
-@BindingAdapter("placeholder")
-fun setPlaceholder(view: View, @DrawableRes placeholder: Int): Unit = TODO()

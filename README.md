@@ -1,12 +1,7 @@
-# Sample project with reproduction of [Android Issue 78795736](https://issuetracker.google.com/issues/78795736)
+# Example of reusable binding
 
-To reproduce, just run build:
-```
-./gradlew assembleDebug
-```
+see [content_main.xml](app/src/main/res/layout/content_main.xml) for usage
 
-You will get compile time error:
-```
-e: [kapt] An exception occurred: android.databinding.tool.util.LoggedErrorException: Found data binding errors.
-****/ data binding error ****msg:Cannot find the setter for attribute 'app:placeholder' with parameter type android.graphics.drawable.Drawable on android.widget.ImageView. file:/this/project/kotlin-android-sample/app/src/main/res/layout/content_main.xml loc:28:31 - 28:56 ****\ data binding error ****
-```
+And 2 implementations:
+[button.xml](app/src/main/res/layout/button.xml)
+[button_model.xml](app/src/main/res/layout/button_model.xml)
